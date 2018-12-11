@@ -48,6 +48,10 @@
         @if(Auth::check())
             <div class="container">
                 <h1>My Posts</h1>
+                @if(!count($myphotos))
+                    <p>You do not have any photos yet.</p>
+                    <a href="/photos/create">Start Here!</a>
+                @endif
                 <!-- Single Big Post Area -->
                 <div class="row align-items-center">
                     @include('photos._post')
