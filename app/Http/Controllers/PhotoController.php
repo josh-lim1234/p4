@@ -5,16 +5,27 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App;
 use App\Photo;
+use Auth;
 
 class PhotoController extends Controller
 {
 
     public function index()
     {    
+    	$user = Auth::user();
     	$photos = Photo::all();
+        $latestphotos = $photos->sortByDesc('created_at')->take(4);
+    	if($user){
+	    	$myphotos = $user->photos()->orderBy('title')->get(); 
+	    }else {
+	    	$myphotos = null;
+	    }
         return view('welcome')->with([
-            'photos' => $photos
+            'photos' => $photos,
+            'myphotos' => $myphotos,
+            'latestphotos' => $latestphotos
         ]);
+
     }
 
     public function show(Request $request, $id)
@@ -25,38 +36,6 @@ class PhotoController extends Controller
         ]);
     }
 
-	public function search(Request $request)
-	{
-	    return view('photos.search')->with([
-	        'searchTerm' => $request->session()->get('searchTerm', ''),
-	        'caseSensitive' => $request->session()->get('caseSensitive', false),
-	        'searchResults' => $request->session()->get('searchResults', []),
-	    ]);
-	}
-	public function searchProcess(Request $request) 
-	{
-	    $searchResults = [];
-	    $searchTerm = $request->input('searchTerm', null);
-	    if ($searchTerm) {
-	        $photosRawData = file_get_contents(database_path('/photos.json'));
-	        $photos = json_decode($photosRawData, true);
-	        foreach ($photos as $title => $photo) {
-	            if ($request->has('caseSensitive')) {
-	                $match = $title == $searchTerm;
-	            } else {
-	                $match = strtolower($title) == strtolower($searchTerm);
-	            }
-	            if ($match) {
-	                $searchResults[$title] = $photo;
-	            }
-	        }
-	    }
-	    return redirect('/photos/search')->with([
-	        'searchTerm' => $searchTerm,
-	        'caseSensitive' => $request->has('caseSensitive'),
-	        'searchResults' => $searchResults
-	    ]);
-	}
 	public function store(Request $request) {
         $request->validate([
             'title' => 'required',
@@ -69,7 +48,7 @@ class PhotoController extends Controller
         $photo->restaurant_id = $request->restaurant_id;
         $photo->image = $request->image;
         $photo->description = $request->description;
-        $photo->user_id = 1;
+        $photo->user_id = Auth::user()->id;
         $photo->save();
         # Note: Have to sync restaurants *after* the photo has been saved so there's a photo_id to store in the pivot table
         $photo->diets()->sync($request->diets);

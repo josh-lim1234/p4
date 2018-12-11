@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'PhotoController@index' );
 
 Route::get('/photos/create', 'PhotoController@create');
 
@@ -25,7 +23,16 @@ Route::get('/photos/search-process', 'PhotoController@searchProcess');
 
 Route::get('/photos/{photo}/delete', 'PhotoController@delete');
 
-
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/show-login-status', function () {
+    $user = Auth::user();
+
+    if ($user) {
+        dump('You are logged in.', $user->toArray());
+    } else {
+        dump('You are not logged in.');
+    }
+
+    return;
+});

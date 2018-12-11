@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 @section('content')
 <div class="container">
@@ -68,6 +68,7 @@
                                 </button>
                             </div>
                         </div>
+                        Already have an account? <a href='/login'>Login here...</a>
                     </form>
                 </div>
             </div>

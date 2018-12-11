@@ -6,15 +6,8 @@
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-
-    <!-- Title -->
-    <title>@yield('title', config('app.name'))</title>
-
-    <!-- Favicon -->
+    <title>@yield('title', 'FoooooooD')</title>
     <link rel="icon" href="img/core-img/favicon.ico">
-
-    <!-- Stylesheet -->
     <link rel="stylesheet" href="/style.css">
     @stack('head')
 </head>
@@ -29,19 +22,7 @@
 	<section id='main'>
     	@yield('content')
 	</section>
-
-    <!-- ##### Header Area End ##### -->
-
-    <!-- ##### Treading Post Area Start ##### -->
-    @include('modules.latest')
-    <!-- ##### Treading Post Area End ##### -->
-
-
-
     @yield('content2')
-    <!-- ##### Posts Area End ##### -->
-
-    <!-- ##### Footer Area Start ##### -->
     <footer class="footer-area">
         <div class="container">
             <div class="row">
@@ -56,10 +37,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
             </div>
         </div>
     </footer>
-    <!-- ##### Footer Area Start ##### -->
-
-    <!-- ##### All Javascript Script ##### -->
-    <!-- jQuery-2.2.4 js -->
     <script src="js/jquery/jquery-2.2.4.min.js"></script>
     <!-- Popper js -->
     <script src="js/bootstrap/popper.min.js"></script>

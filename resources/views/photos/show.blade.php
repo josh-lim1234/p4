@@ -16,10 +16,12 @@
                     </div>
                     <div class="col-12 col-sm-6 col-lg-5 col-xl-4">
                         <!-- Top Search Area -->
-                        <div class="top-search-area">
-                                <button type="submit" class="btn"><a href='/photos/{{ $photo->id }}/edit'>EDIT</a></button>                    
-                                <button type="submit" class="btn"><a href='/photos/{{ $photo->id }}/delete'>DELETE</a></button>
-                        </div>
+                       	@if(Auth::user()->name == $photo->user->name)
+	                        <div class="top-search-area">
+	                                <button type="submit" class="btn"><a href='/photos/{{ $photo->id }}/edit'>EDIT</a></button>                    
+	                                <button type="submit" class="btn"><a href='/photos/{{ $photo->id }}/delete'>DELETE</a></button>
+	                        </div>
+                        @endif
                     </div>
                 </div>
             </div>

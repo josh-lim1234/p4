@@ -14,16 +14,13 @@
         <div class="classy-nav-container breakpoint-off">
             <div class="container">
                 <!-- Menu -->
-                <nav class="classy-navbar justify-content-between" id="buenoNav">
-
-                    <!-- Toggler -->
-                    <div id="toggler"><img src="img/core-img/toggler.png" alt=""></div>
-
-                    <!-- Navbar Toggler -->
-                    <div class="classy-navbar-toggler">
-                        <span class="navbarToggler"><span></span><span></span><span></span></span>
-                    </div>
-
+                <nav class="classy-navbar justify-content-between" id="buenoNav">          
+                        <div id="toggler">                         
+                        </div>
+                        <!-- Navbar Toggler -->
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
                     <!-- Menu -->
                     <div class="classy-menu">
 
@@ -36,63 +33,26 @@
                         <div class="classynav">
                             <ul>
                                 <li><a href="/photos">Home</a></li>
-                                <li><a href="#">Cuisines</a>
-                                    <ul class="dropdown">
-                                        <li><a href="index.html">Home</a></li>
-                                        <li><a href="catagory.html">Catagory</a></li>
-                                        <li><a href="catagory-post.html">Catagory Post</a></li>
-                                        <li><a href="single-post.html">Single Post</a></li>
-                                        <li><a href="receipe.html">Recipe</a></li>
-                                        <li><a href="contact.html">Contact</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#">Diets</a>
-                                    <div class="dropdown">
-                                        <ul class="single-mega cn-col-4">
-                                            <li><a href="#">- Recipe</a></li>
-                                            <li><a href="#">- Bread</a></li>
-                                            <li><a href="#">- Breakfast</a></li>
-                                            <li><a href="#">- Meat</a></li>
-                                            <li><a href="#">- Fastfood</a></li>
-                                            <li><a href="#">- Salad</a></li>
-                                            <li><a href="#">- Soup</a></li>
-                                        </ul>
-                                        <ul class="single-mega cn-col-4">
-                                            <li><a href="#">- Recipe</a></li>
-                                            <li><a href="#">- Bread</a></li>
-                                            <li><a href="#">- Breakfast</a></li>
-                                            <li><a href="#">- Meat</a></li>
-                                            <li><a href="#">- Fastfood</a></li>
-                                            <li><a href="#">- Salad</a></li>
-                                            <li><a href="#">- Soup</a></li>
-                                        </ul>
-                                        <ul class="single-mega cn-col-4">
-                                            <li><a href="#">- Recipe</a></li>
-                                            <li><a href="#">- Bread</a></li>
-                                            <li><a href="#">- Breakfast</a></li>
-                                            <li><a href="#">- Meat</a></li>
-                                            <li><a href="#">- Fastfood</a></li>
-                                            <li><a href="#">- Salad</a></li>
-                                            <li><a href="#">- Soup</a></li>
-                                        </ul>
-                                        <ul class="single-mega cn-col-4">
-                                            <li><a href="#">- Recipe</a></li>
-                                            <li><a href="#">- Bread</a></li>
-                                            <li><a href="#">- Breakfast</a></li>
-                                            <li><a href="#">- Meat</a></li>
-                                            <li><a href="#">- Fastfood</a></li>
-                                            <li><a href="#">- Salad</a></li>
-                                            <li><a href="#">- Soup</a></li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li><a href="/photos/create">New Post</a></li>
-                            </ul>
+        @if(Auth::check())
+            <li><a href="/photos/create">New Post</a></li>
+            <li>
+                {{ Auth::user()->name }}
+                <ul class="dropdown">
+                    <li>
+                        <form method='POST' id='logout' action='/logout'>
+                            {{ csrf_field() }}
+                            <a href='#' onClick='document.getElementById("logout").submit();'>
+                             Logout</a>
+                        </form>
+                    </li>
+                </ul>
+            </li>
+        @else
 
-                            <!-- Login/Register -->
-                            <div class="login-area">
-                                <a href="#">Login / Register</a>
-                            </div>
+            <a href="/login">Login</a>            
+        @endif
+
+                            </ul>
                         </div>
                         <!-- Nav End -->
                     </div>

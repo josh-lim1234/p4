@@ -42,4 +42,18 @@
     </div>
 </div>
 <!-- ##### Catagory Area End ##### -->
+    <!-- ##### Big Posts Area Start ##### -->
+    <div class="big-posts-area mb-50">
+        <hr>
+        @if(Auth::check())
+            <div class="container">
+                <h1>My Posts</h1>
+                <!-- Single Big Post Area -->
+                <div class="row align-items-center">
+                    @include('photos._post')
+                </div>
+            </div>
+        @endif
+    </div>
+    <!-- ##### Big Posts Area End ##### -->
 @endsection('content2')
