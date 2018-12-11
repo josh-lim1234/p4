@@ -14,3 +14,18 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/photos/create', 'PhotoController@create');
+
+Route::resource('/photos', 'PhotoController');
+
+Route::get('/photos/search', 'PhotoController@search');
+
+Route::get('/photos/search-process', 'PhotoController@searchProcess');
+
+Route::get('/photos/{photo}/delete', 'PhotoController@delete');
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
