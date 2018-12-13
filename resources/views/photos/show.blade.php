@@ -48,9 +48,13 @@
 	                            <h4>Cuisines</h4><p>| 
 								@foreach ($photo->restaurant->cuisines as $cuisine)
 									{{ $cuisine->name }} | 	 
-								@endforeach	                          
-								</p>		
-	                            <p>{{ $photo->description }}</p>
+								@endforeach
+								</p>
+								@if($photo->description)	
+									<h4>Description</h4>
+		                            <p>{{ $photo->description }}
+		                            </p>
+	                            @endif
 	                        </div>
 	                    </div>
 	                </div>
