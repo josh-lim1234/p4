@@ -83,14 +83,20 @@ class PhotoController extends Controller
             'diets' => 'required'
         ]);
         $photo = Photo::find($id);
-        $photo->diets()->sync($request->diets);
-        $photo->title = $request->title;
-        $photo->restaurant_id = $request->restaurant_id;
-        $photo->image = $request->image;
-        $photo->description = $request->description;
-        $photo->save();
-        return redirect('/photos/' . $id . '/edit')->with([
-            'alert' => 'Your changes were saved.'
+        if (Auth::user()->id == $photo->user->id){
+	        $photo->diets()->sync($request->diets);
+	        $photo->title = $request->title;
+	        $photo->restaurant_id = $request->restaurant_id;
+	        $photo->image = $request->image;
+	        $photo->description = $request->description;
+	        $photo->save();
+	        $message = 'Your changes were saved.';
+	    }
+	    else {
+	    	$message = 'You are not authorized to edit this page.';
+	    }
+        return redirect('/photos/' . $id)->with([
+            'alert' => $message
         ]);
     }
     public function create(Request $request)
