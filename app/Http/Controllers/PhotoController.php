@@ -14,7 +14,6 @@ class PhotoController extends Controller
     {    
     	$user = Auth::user();
     	$photos = Photo::all();
-        $latestphotos = $photos->sortByDesc('created_at')->take(4);
     	if($user){
 	    	$myphotos = $user->photos()->orderBy('title')->get(); 
 	    }else {
@@ -23,7 +22,6 @@ class PhotoController extends Controller
         return view('welcome')->with([
             'photos' => $photos,
             'myphotos' => $myphotos,
-            'latestphotos' => $latestphotos
         ]);
 
     }

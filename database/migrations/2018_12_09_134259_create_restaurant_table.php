@@ -18,6 +18,7 @@ class CreateRestaurantTable extends Migration
             $table->timestamps();
             $table->string('name');
             $table->longText('description');
+            $table->string('image');
         });
     }
 

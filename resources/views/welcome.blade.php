@@ -21,7 +21,7 @@
                     <!-- Content -->
                     <div class="catagory-content-bg">
                         <div class="catagory-content">
-                            <a href="#" class="post-title">Restaurants</a>
+                            <a href="/restaurants" class="post-title">Restaurants</a>
                         </div>
                     </div>
                 </div>
@@ -33,7 +33,7 @@
                     <!-- Content -->
                     <div class="catagory-content-bg">
                         <div class="catagory-content">
-                            <a href="#" class="post-title">Cuisines</a>
+                            <a href="/cuisines" class="post-title">Cuisines</a>
                         </div>
                     </div>
                 </div>

@@ -13,13 +13,13 @@
 
 Route::get('/', 'PhotoController@index' );
 
-Route::get('/photos/create', 'PhotoController@create');
+Route::get('/cuisines', 'CuisineController@index' );
 
 Route::resource('/photos', 'PhotoController');
 
-Route::get('/photos/search', 'PhotoController@search');
-
-Route::get('/photos/search-process', 'PhotoController@searchProcess');
+Route::resource('/restaurants', 'RestaurantController')->except([
+	'show', 'delete'
+]);
 
 Route::get('/photos/{photo}/delete', 'PhotoController@delete');
 
